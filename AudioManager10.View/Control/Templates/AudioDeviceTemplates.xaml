@@ -1,0 +1,292 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:interface="clr-namespace:NAudioWrapper.Interface;assembly=NAudioWrapper"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:p="clr-namespace:AudioManager10.View.Properties">
+    <system:Double x:Key="PeakStrength">0.75</system:Double>
+    <system:Double x:Key="PeakOverlay">2.0</system:Double>
+    <system:Double x:Key="ElementHeight">80</system:Double>
+
+    <Style x:Key="SmallInvisibleButtonStyle" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MediumInvisibleButtonStyle" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Height" Value="24"/>
+        <Setter Property="Width" Value="24"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate x:Key="ActiveOutputDeviceTemplate" DataType="interface:IAudioDeviceObject">
+        <Grid Height="{StaticResource ElementHeight}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Style="{StaticResource SeparatorRectangleStyle}"/>
+
+            <Grid x:Name="PeakGrid"
+                  Grid.Row="1" 
+                  Grid.RowSpan="2"
+                  VerticalAlignment="Stretch">
+
+                <!-- Delay -->
+                <Rectangle HorizontalAlignment="Left"
+                           Fill="#22FFFFFF"
+                           FlowDirection="RightToLeft">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentualValueConverter}"
+                                      ConverterParameter="{StaticResource PeakOverlay}">
+                            <Binding Path=".PercentualLeftPeakDelay"/>
+                            <Binding Path="ActualWidth" ElementName="PeakGrid" />
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+
+                <!-- Delay -->
+                <Rectangle HorizontalAlignment="Right"
+                           Fill="#22FFFFFF"
+                           FlowDirection="LeftToRight">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentualValueConverter}"
+                                      ConverterParameter="{StaticResource PeakOverlay}">
+                            <Binding Path=".PercentualRightPeakDelay"/>
+                            <Binding Path="ActualWidth" ElementName="PeakGrid" />
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+
+                <Rectangle HorizontalAlignment="Left"
+                           Fill="#33FFFFFF"
+                           FlowDirection="RightToLeft">
+                    <!-- too lazy to fiddle with gradient brush... -->
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentualValueConverter}"
+                                      ConverterParameter="{StaticResource PeakOverlay}">
+                            <Binding Path=".PercentualLeftPeak"/>
+                            <Binding Path="ActualWidth" ElementName="PeakGrid" />
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+
+                <Rectangle HorizontalAlignment="Right"
+                           Fill="#33FFFFFF"
+                           FlowDirection="LeftToRight">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentualValueConverter}"
+                                      ConverterParameter="{StaticResource PeakOverlay}">
+                            <Binding Path=".PercentualRightPeak"/>
+                            <Binding Path="ActualWidth" ElementName="PeakGrid" />
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+            </Grid>
+
+            <Grid Row="1"
+                  Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Command="{Binding .SetAsDefaultOutputDeviceCommand}"
+                        Style="{StaticResource SmallInvisibleButtonStyle}"
+                        ToolTip="{x:Static p:Resources.ChooseAsDefaultDevice}">
+                    <Image Source="../../Resource/Icons/032/speaker_white.png"/>
+                </Button>
+
+                <TextBlock Grid.Column="1" 
+                           Margin="5 0"
+                           Style="{StaticResource Header2}"
+                           Text="{Binding .ActualDevice.DeviceFriendlyName}"/>
+            </Grid>
+
+            <Grid Row="2"
+                  Grid.Column="0"
+                  Margin="10 0 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Style="{StaticResource MediumInvisibleButtonStyle}"
+                        Command="{Binding .InvertMuteCommand}">
+                    <Image>
+                        <Image.Source>
+                            <MultiBinding Converter="{StaticResource VolumeImageConverter}">
+                                <Binding Path=".Muted"/>
+                                <Binding Path=".ActualDevice.AudioEndpointVolume.MasterVolumeLevelScalar" />
+                            </MultiBinding>
+                        </Image.Source>
+                    </Image>
+                </Button>
+
+                <Slider Grid.Column="1" 
+                        VerticalAlignment="Center"
+                        IsMoveToPointEnabled="True"
+                        Minimum="0"
+                        Maximum="1"
+                        Value="{Binding .ActualDevice.AudioEndpointVolume.MasterVolumeLevelScalar, Mode=TwoWay, NotifyOnSourceUpdated=True}"/>
+
+                <TextBlock Grid.Column="2" 
+                           VerticalAlignment="Center"
+                           Width="50"
+                           Margin="5 0"
+                           Style="{StaticResource Header1}">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource DoublePercentageConverter}">
+                            <Binding Path=".ActualDevice.AudioEndpointVolume.MasterVolumeLevelScalar"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ActiveInputDeviceTemplate" DataType="interface:IAudioDeviceObject">
+        <Grid Height="{StaticResource ElementHeight}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="32"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Rectangle Style="{StaticResource SeparatorRectangleStyle}"/>
+
+            <Grid x:Name="PeakGrid"
+                  Grid.Row="1" 
+                  Grid.RowSpan="2"
+                  VerticalAlignment="Stretch">
+
+                <!-- Delay -->
+                <Rectangle HorizontalAlignment="Left"
+                           Fill="#22FFFFFF"
+                           FlowDirection="RightToLeft">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentualValueConverter}"
+                                      ConverterParameter="{StaticResource PeakOverlay}">
+                            <Binding Path=".PercentualLeftPeakDelay"/>
+                            <Binding Path="ActualWidth" ElementName="PeakGrid" />
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+
+                <!-- Delay -->
+                <Rectangle HorizontalAlignment="Right"
+                           Fill="#22FFFFFF"
+                           FlowDirection="LeftToRight">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentualValueConverter}"
+                                      ConverterParameter="{StaticResource PeakOverlay}">
+                            <Binding Path=".PercentualRightPeakDelay"/>
+                            <Binding Path="ActualWidth" ElementName="PeakGrid" />
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+
+                <Rectangle HorizontalAlignment="Left"
+                           Fill="#33FFFFFF"
+                           FlowDirection="RightToLeft">
+                    <!-- too lazy to fiddle with gradient brush... -->
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentualValueConverter}"
+                                      ConverterParameter="{StaticResource PeakOverlay}">
+                            <Binding Path=".PercentualLeftPeak"/>
+                            <Binding Path="ActualWidth" ElementName="PeakGrid" />
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+
+                <Rectangle HorizontalAlignment="Right"
+                           Fill="#33FFFFFF"
+                           FlowDirection="LeftToRight">
+                    <Rectangle.Width>
+                        <MultiBinding Converter="{StaticResource PercentualValueConverter}"
+                                      ConverterParameter="{StaticResource PeakOverlay}">
+                            <Binding Path=".PercentualRightPeak"/>
+                            <Binding Path="ActualWidth" ElementName="PeakGrid" />
+                        </MultiBinding>
+                    </Rectangle.Width>
+                </Rectangle>
+            </Grid>
+
+            <Grid Row="1"
+                  Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="34"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" 
+                           Margin="5 0"
+                           Style="{StaticResource Header2}"
+                           Text="{Binding .ActualDevice.DeviceFriendlyName}"/>
+            </Grid>
+
+            <Grid Row="2"
+                  Grid.Column="0"
+                  Margin="10 0 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Style="{StaticResource MediumInvisibleButtonStyle}"
+                        Command="{Binding .InvertMuteCommand}">
+                    <Image>
+                        <Image.Source>
+                            <MultiBinding Converter="{StaticResource CaptureImageConverter}">
+                                <Binding Path=".Muted"/>
+                            </MultiBinding>
+                        </Image.Source>
+                    </Image>
+                </Button>
+
+                <Slider Grid.Column="1" 
+                        VerticalAlignment="Center"
+                        IsMoveToPointEnabled="True"
+                        Minimum="0"
+                        Maximum="1"
+                        Value="{Binding .ActualDevice.AudioEndpointVolume.MasterVolumeLevelScalar, Mode=TwoWay, NotifyOnSourceUpdated=True}"/>
+
+                <TextBlock Grid.Column="2" 
+                           VerticalAlignment="Center"
+                           Width="50"
+                           Margin="5 0"
+                           Style="{StaticResource Header1}">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource DoublePercentageConverter}">
+                            <Binding Path=".ActualDevice.AudioEndpointVolume.MasterVolumeLevelScalar"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>
