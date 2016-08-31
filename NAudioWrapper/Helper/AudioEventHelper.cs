@@ -56,51 +56,56 @@ namespace NAudioWrapper.Helper
 
         public void OnDeviceStateChanged(string deviceId, DeviceState newState)
         {
+            var device = deviceId.ToDevice();
             var args = new DeviceStateChangedEventArgs
             {
                 DeviceId = deviceId,
                 NewState = newState
             };
-            DeviceStateChanged?.Invoke(this, args);
+            DeviceStateChanged?.Invoke(device, args);
         }
 
         public void OnDeviceAdded(string pwstrDeviceId)
         {
+            var device = pwstrDeviceId.ToDevice();
             var args = new DeviceAddedEventArgs
             {
-                DeviceFriendlyName = pwstrDeviceId.ToFriendlyName()
+                DeviceId = pwstrDeviceId
             };
-            DeviceAdded?.Invoke(this, args);
+            DeviceAdded?.Invoke(device, args);
         }
 
         public void OnDeviceRemoved(string deviceId)
         {
+            var device = deviceId.ToDevice();
             var args = new DeviceRemovedEventArgs
             {
-                DeviceId = deviceId.ToFriendlyName()
+                DeviceId = deviceId
             };
-            DeviceRemoved?.Invoke(this, args);
+            DeviceRemoved?.Invoke(device, args);
         }
 
         public void OnDefaultDeviceChanged(DataFlow flow, Role role, string defaultDeviceId)
         {
+            var device = defaultDeviceId.ToDevice();
             var args = new DefaultDeviceChangedEventArgs
             {
                 Flow = flow,
                 Role = role,
                 DeviceId = defaultDeviceId
             };
-            DefaultDeviceChanged?.Invoke(this, args);
+            DefaultDeviceChanged?.Invoke(device, args);
         }
 
         public void OnPropertyValueChanged(string pwstrDeviceId, PropertyKey key)
         {
+            var device = pwstrDeviceId.ToDevice();
             var args = new PropertyValueChangedEventArgs
             {
-                DeviceFriendlyName = pwstrDeviceId.ToFriendlyName(),
+                DeviceId = pwstrDeviceId,
                 Key = key
             };
-            PropertyValueChanged?.Invoke(this, args);
+            PropertyValueChanged?.Invoke(device, args);
         }
     }
 
@@ -112,7 +117,7 @@ namespace NAudioWrapper.Helper
 
     public class DeviceAddedEventArgs : EventArgs
     {
-        public string DeviceFriendlyName { get; set; }
+        public string DeviceId { get; set; }
     }
 
     public class DeviceRemovedEventArgs : EventArgs
@@ -129,7 +134,7 @@ namespace NAudioWrapper.Helper
 
     public class PropertyValueChangedEventArgs : EventArgs
     {
-        public string DeviceFriendlyName { get; set; }
+        public string DeviceId { get; set; }
         public PropertyKey Key { get; set; }
     }
 

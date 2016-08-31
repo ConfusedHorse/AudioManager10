@@ -64,8 +64,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BlurryControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\BlurryControls\BlurryControls.dll</HintPath>
+      <HintPath>..\packages\BlurryControls.1.0.2\lib\net452\BlurryControls.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>

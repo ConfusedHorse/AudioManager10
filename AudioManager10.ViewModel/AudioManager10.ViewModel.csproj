@@ -46,7 +46,10 @@
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -80,6 +83,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AudioManager10.DependencyInjector\AudioManager10.DependencyInjector.csproj">
+      <Project>{9B09D280-A8ED-4AE6-A01F-F6AD649D32C9}</Project>
+      <Name>AudioManager10.DependencyInjector</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NAudioWrapper\NAudioWrapper.csproj">
       <Project>{3b227c3a-f160-487e-8396-986986319f57}</Project>
       <Name>NAudioWrapper</Name>

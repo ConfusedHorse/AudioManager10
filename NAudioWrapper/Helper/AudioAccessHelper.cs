@@ -1,12 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using EndPointControllerWrapper;
 using NAudio.CoreAudioApi;
+using NAudioWrapper.Interface;
+using MMDeviceEnumerator = NAudio.CoreAudioApi.MMDeviceEnumerator;
 
 namespace NAudioWrapper.Helper
 {
     public static class AudioAccessHelper
     {
+        #region Fields
+
+        private static readonly MMDeviceEnumerator MmDeviceEnumerator = new MMDeviceEnumerator();
+
+        #endregion
+
+        #region private methods
+
+        private static MMDevice GetDefaultDevice(DataFlow kind, Role role = Role.Multimedia)
+        {
+            try
+            {
+                var dev = MmDeviceEnumerator.GetDefaultAudioEndpoint(kind, role);
+                return dev;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Could not aquire default device due to an excepion: " + ex.Message);
+                return null;
+            }
+        }
+
+        #endregion private methods
+
         #region public methods
 
         public static MMDeviceCollection GetActiveOutoutDevices()
@@ -41,13 +69,12 @@ namespace NAudioWrapper.Helper
             return true;
         }
 
-        public static string ToFriendlyName(this string pwstrDeviceId)
+        public static MMDevice ToDevice(this string pwstrDeviceId)
         {
             try
             {
-                var mmde = new MMDeviceEnumerator();
-                var devCol = mmde.GetDevice(pwstrDeviceId);
-                return devCol.DeviceFriendlyName;
+                var device = MmDeviceEnumerator.GetDevice(pwstrDeviceId);
+                return device;
             }
             catch (Exception ex)
             {
@@ -60,8 +87,7 @@ namespace NAudioWrapper.Helper
         {
             try
             {
-                var mmde = new MMDeviceEnumerator();
-                var devCol = mmde.EnumerateAudioEndPoints(kind, DeviceState.Active);
+                var devCol = MmDeviceEnumerator.EnumerateAudioEndPoints(kind, DeviceState.Active);
                 return devCol;
             }
             catch (Exception ex)
@@ -71,62 +97,6 @@ namespace NAudioWrapper.Helper
             }
         }
 
-        public static void SetGlobalVolume(int level)
-        {
-            try
-            {
-                var mmde = new MMDeviceEnumerator();
-                var devCol = mmde.EnumerateAudioEndPoints(DataFlow.All, DeviceState.All);
-                foreach (var dev in devCol)
-                {
-                    try
-                    {
-                        if (dev.State == DeviceState.Active)
-                        {
-                            var newVolume = Math.Max(Math.Min(level, 100), 0) / (float)100;
-
-                            dev.AudioEndpointVolume.MasterVolumeLevelScalar = newVolume;
-
-                            dev.AudioEndpointVolume.Mute = level == 0;
-
-                            Debug.WriteLine("Volume of " + dev.FriendlyName + " is " + dev.AudioEndpointVolume.MasterVolumeLevelScalar);
-                        }
-                        else
-                        {
-                            Debug.WriteLine("Ignoring device " + dev.FriendlyName + " with state " + dev.State);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine(dev.FriendlyName + " could not be muted with error " + ex);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Could not enumerate devices due to an excepion: " + ex.Message);
-            }
-        }
-
         #endregion public methods
-
-        #region private methods
-
-        private static MMDevice GetDefaultDevice(DataFlow kind, Role role = Role.Multimedia)
-        {
-            try
-            {
-                var mmde = new MMDeviceEnumerator();
-                var dev = mmde.GetDefaultAudioEndpoint(kind, role);
-                return dev;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Could not aquire default device due to an excepion: " + ex.Message);
-                return null;
-            }
-        }
-
-        #endregion private methods
     }
 }

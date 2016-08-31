@@ -23,6 +23,7 @@ namespace AudioManager10.ViewModel.ViewModel
         private readonly AudioEventHelper _audioEventHelper;
         private DispatcherTimer _delayMasterVolumeEventTimer;
         private IAudioDeviceObject _defaultMultimediaRenderDevice;
+        private float _defaultMasterVolume;
 
         #endregion Fields
 
@@ -74,6 +75,16 @@ namespace AudioManager10.ViewModel.ViewModel
             }
         }
 
+        public float DefaultMasterVolume
+        {
+            get { return _defaultMasterVolume; }
+            set
+            {
+                _defaultMasterVolume = value;
+                RaisePropertyChanged(() => DefaultMasterVolume);
+            }
+        }
+
         #endregion Properties
 
         #region Private Methods
@@ -109,41 +120,53 @@ namespace AudioManager10.ViewModel.ViewModel
 
         private static void AudioEventHelperOnDeviceStateChanged(object sender, DeviceStateChangedEventArgs args)
         {
-            Debug.WriteLine("DeviceState changed: " + args.DeviceId.ToFriendlyName() + " (" + args.NewState + ")");
+            var device = sender as MMDevice;
+            if (device == null) Debug.WriteLine("DeviceState changed: BAD PARAMETERS");
+            else
+                Debug.WriteLine("DeviceState changed: " + device.FriendlyName + " (" + args.NewState + ")");
         }
 
         private void AudioEventHelperOnDeviceRemoved(object sender, DeviceRemovedEventArgs args)
         {
-            var oldDevice =
-                _activeOutputDeviceList.FirstOrDefault(d => d.ActualDevice.ID == args.DeviceId);
-
+            RefreshInputDevicesCommand.Execute(null);
             RefreshOutputDevicesCommand.Execute(null);
 
-            Debug.WriteLine("Device removed: " + oldDevice);
+            var device = sender as MMDevice;
+            if (device == null) Debug.WriteLine("Device removed: BAD PARAMETERS");
+            else
+            Debug.WriteLine("Device removed: " + device.FriendlyName);
         }
 
         private void AudioEventHelperOnDeviceAdded(object sender, DeviceAddedEventArgs args)
         {
+            RefreshInputDevicesCommand.Execute(null);
             RefreshOutputDevicesCommand.Execute(null);
 
-            var newDevice =
-                _activeOutputDeviceList.FirstOrDefault(d => d.ActualDevice.ID == args.DeviceFriendlyName);
-
-            Debug.WriteLine("Device added: " + newDevice);
+            var device = sender as MMDevice;
+            if (device == null) Debug.WriteLine("Device added: BAD PARAMETERS");
+            else
+            Debug.WriteLine("Device added: " + device.FriendlyName);
         }
 
         private static void AudioEventHelperOnDefaultDeviceChanged(object sender, DefaultDeviceChangedEventArgs args)
         {
-            Debug.WriteLine("DefaultDevice changed: " + args.DeviceId.ToFriendlyName() + " (" + args.Flow + ": " + args.Role + ")");
+            var device = sender as MMDevice;
+            if (device == null) Debug.WriteLine("DefaultDevice changed: BAD PARAMETERS");
+            else
+            Debug.WriteLine("DefaultDevice changed: " + device.FriendlyName + " (" + args.Flow + ": " + args.Role + ")");
         }
 
-        private static void AudioEventHelperOnPropertyValueChanged(object sender, PropertyValueChangedEventArgs args)
+        private void AudioEventHelperOnPropertyValueChanged(object sender, PropertyValueChangedEventArgs args)
         {
-            Debug.WriteLine("PropertyValue changed: " + args.DeviceFriendlyName + " (" + args.Key.formatId + ": " + args.Key.propertyId + ")");
+            var device = sender as MMDevice;
+            if (device == null) Debug.WriteLine("PropertyValue changed: BAD PARAMETERS");
+            else
+            Debug.WriteLine("PropertyValue changed: " + device.FriendlyName + " (" + args.Key.formatId + ": " + args.Key.propertyId + ")");
         }
         
         private void AudioDeviceObjectOnVolumeChanged(object sender, VolumeChangedEventArgs args)
         {
+            DefaultMasterVolume = args.NewVolume;
             _delayMasterVolumeEventTimer.Stop();
             _delayMasterVolumeEventTimer.Tag = new Tuple<object, VolumeChangedEventArgs>(sender, args);
             _delayMasterVolumeEventTimer.Start();
