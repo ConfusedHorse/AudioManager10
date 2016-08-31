@@ -81,6 +81,8 @@ namespace AudioManager10.View.Control.TrayControl
 
         private void SelectIconFromMasterVolume(object sender, VolumeChangedEventArgs volumeChangedEventArgs)
         {
+            _instance.IconToolTipText = volumeChangedEventArgs.FriendlyName + " (" + volumeChangedEventArgs.NewVolume + "%)";
+
             Thread thread;
             var audioDeviceObject = sender as IAudioDeviceObject;
             if (audioDeviceObject != null && audioDeviceObject.Muted) thread = new Thread(() => SetTrayIconIco(IconIco.SoundMute));
