@@ -7,6 +7,7 @@
     xmlns:windows="clr-namespace:BlurryControls.Windows;assembly=BlurryControls"
     xmlns:module="clr-namespace:AudioManager10.View.Module"
     xmlns:control="clr-namespace:AudioManager10.View.Control"
+    xmlns:optionsControl="clr-namespace:AudioManager10.View.Control.OptionsControl"
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300"
     DataContext="{Binding Path=TrayIconViewModel,
@@ -15,8 +16,8 @@
     DeactivationDuration="300">
     <StackPanel Orientation="Vertical"
                 VerticalAlignment="Bottom">
-        <control:OptionsControl x:Name="OptionsControl"
-                                SizeChanged="Content_OnSizeChanged"/>
+        <optionsControl:OptionsControl x:Name="OptionsControl"
+                                       SizeChanged="Content_OnSizeChanged"/>
         <control:AudioDevicesControl x:Name="AudioDevicesControl" 
                                      SizeChanged="Content_OnSizeChanged"/>
     </StackPanel>

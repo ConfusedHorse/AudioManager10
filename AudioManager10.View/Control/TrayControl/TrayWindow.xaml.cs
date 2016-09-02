@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using AudioManager10.ViewModel.ViewModel;
 using BlurryControls.Windows;
@@ -25,6 +26,11 @@ namespace AudioManager10.View.Control.TrayControl
             Closed += OnClosed;
         }
 
+        protected override void OnClosing(CancelEventArgs cancelEventArgs)
+        {
+            if (IsMouseOver) cancelEventArgs.Cancel = true;
+        }
+
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             _instance.TrayWindowIsOpened = true;
@@ -38,6 +44,7 @@ namespace AudioManager10.View.Control.TrayControl
         private void Content_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             Height = AudioDevicesControl.ActualHeight + OptionsControl.ActualHeight;
+            Top = MaxHeight - Height;
         }
     }
 }

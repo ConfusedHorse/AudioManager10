@@ -79,14 +79,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioManager10.DependencyInjector\AudioManager10.DependencyInjector.csproj">
-      <Project>{9B09D280-A8ED-4AE6-A01F-F6AD649D32C9}</Project>
-      <Name>AudioManager10.DependencyInjector</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AudioManager10.Settings\AudioManager10.Settings.csproj">
-      <Project>{AC24EA76-8B99-480F-812B-9EFC60B7A398}</Project>
-      <Name>AudioManager10.Settings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EndPointControllerWrapper\EndPointControllerWrapper.csproj">
       <Project>{609628ba-4091-44cb-ae0c-232e675c861f}</Project>
       <Name>EndPointControllerWrapper</Name>

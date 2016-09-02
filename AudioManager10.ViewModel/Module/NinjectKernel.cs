@@ -1,6 +1,6 @@
 ﻿using Ninject;
 
-namespace AudioManager10.DependencyInjector
+namespace AudioManager10.ViewModel.Module
 {
     public class NinjectKernel
     {

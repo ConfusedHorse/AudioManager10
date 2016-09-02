@@ -61,6 +61,33 @@ namespace AudioManager10.View.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Already Running.
+        /// </summary>
+        public static string AlreadyRunning {
+            get {
+                return ResourceManager.GetString("AlreadyRunning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An instance of AudioManager10 is already running, please close this down before starting a new session..
+        /// </summary>
+        public static string AlreadyRunningDescription {
+            get {
+                return ResourceManager.GetString("AlreadyRunningDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split count.
+        /// </summary>
+        public static string AlternativeOsdRectCount {
+            get {
+                return ResourceManager.GetString("AlternativeOsdRectCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AudioDevices.
         /// </summary>
         public static string AudioDevices {
@@ -79,11 +106,38 @@ namespace AudioManager10.View.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fewer.
+        /// </summary>
+        public static string Fewer {
+            get {
+                return ResourceManager.GetString("Fewer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Input Devices.
         /// </summary>
         public static string InputDevices {
             get {
                 return ResourceManager.GetString("InputDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More.
+        /// </summary>
+        public static string More {
+            get {
+                return ResourceManager.GetString("More", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        public static string Normal {
+            get {
+                return ResourceManager.GetString("Normal", resourceCulture);
             }
         }
         
@@ -106,6 +160,24 @@ namespace AudioManager10.View.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wrong OS version.
+        /// </summary>
+        public static string NotWindows10 {
+            get {
+                return ResourceManager.GetString("NotWindows10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AudioManager10 is meant to be executed on Microsoft Windows version NT 10.0 or higher exclusively. If you proceed the application may misbehave or even damage your system!.
+        /// </summary>
+        public static string NotWindows10Description {
+            get {
+                return ResourceManager.GetString("NotWindows10Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string Options {
@@ -120,6 +192,15 @@ namespace AudioManager10.View.Properties {
         public static string OutputDevices {
             get {
                 return ResourceManager.GetString("OutputDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show alternative OSD.
+        /// </summary>
+        public static string ShowAlternativeOsd {
+            get {
+                return ResourceManager.GetString("ShowAlternativeOsd", resourceCulture);
             }
         }
     }

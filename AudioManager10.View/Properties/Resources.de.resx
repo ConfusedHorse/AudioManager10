@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyRunning" xml:space="preserve">
+    <value>Wird bereits ausgeführt</value>
+  </data>
+  <data name="AlreadyRunningDescription" xml:space="preserve">
+    <value>Eine Instanz der Anwendung AudioManager10 wird bereits ausgeführt. Beenden Sie diese bevor eine neue Sitzung starten.</value>
+  </data>
+  <data name="AlternativeOsdRectCount" xml:space="preserve">
+    <value>Anzahl Aufteilung</value>
+  </data>
   <data name="AudioDevices" xml:space="preserve">
     <value>Audiogeräte</value>
   </data>
   <data name="ChooseAsDefaultDevice" xml:space="preserve">
     <value>Als Standardgerät auswählen</value>
   </data>
+  <data name="Fewer" xml:space="preserve">
+    <value>Weniger</value>
+  </data>
   <data name="InputDevices" xml:space="preserve">
     <value>Aufnahmegeräte</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Mehr</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>Normal</value>
   </data>
   <data name="NotImplemented" xml:space="preserve">
     <value>Nicht implementiert</value>
@@ -132,10 +150,19 @@
   <data name="NotImplementedDescription" xml:space="preserve">
     <value>Diese Funktionalität ist noch nicht implementiert.</value>
   </data>
+  <data name="NotWindows10" xml:space="preserve">
+    <value>Zielversion nicht unterstützt</value>
+  </data>
+  <data name="NotWindows10Description" xml:space="preserve">
+    <value>AudioManager10 wurde ausschließlich für die Verwendung unter Microsoft Windows Version NT 10.0 oder höher entwickelt. Wenn Sie fortfahren, kann es zu Fehlfunktionen kommen oder das System beschädigt werden!</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Optionen</value>
   </data>
   <data name="OutputDevices" xml:space="preserve">
     <value>Wiedergabegeräte</value>
+  </data>
+  <data name="ShowAlternativeOsd" xml:space="preserve">
+    <value>Zeige alternatives OSD</value>
   </data>
 </root>

@@ -6,4 +6,5 @@
     <converters:VolumeImageConverter x:Key="VolumeImageConverter"/>
     <converters:CaptureImageConverter x:Key="CaptureImageConverter"/>
     <converters:DoublePercentageConverter x:Key="DoublePercentageConverter"/>
+    <converters:QuantityEnumConverter x:Key="QuantityEnumConverter"/>
 </ResourceDictionary>

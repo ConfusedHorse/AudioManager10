@@ -23,7 +23,6 @@ namespace AudioManager10.ViewModel.ViewModel
         private readonly AudioEventHelper _audioEventHelper;
         private DispatcherTimer _delayMasterVolumeEventTimer;
         private IAudioDeviceObject _defaultMultimediaRenderDevice;
-        private float _defaultMasterVolume;
 
         #endregion Fields
 
@@ -72,16 +71,6 @@ namespace AudioManager10.ViewModel.ViewModel
             {
                 _defaultMultimediaRenderDevice = value;
                 RaisePropertyChanged(() => DefaultMultimediaRenderDevice);
-            }
-        }
-
-        public float DefaultMasterVolume
-        {
-            get { return _defaultMasterVolume; }
-            set
-            {
-                _defaultMasterVolume = value;
-                RaisePropertyChanged(() => DefaultMasterVolume);
             }
         }
 
@@ -148,12 +137,16 @@ namespace AudioManager10.ViewModel.ViewModel
             Debug.WriteLine("Device added: " + device.FriendlyName);
         }
 
-        private static void AudioEventHelperOnDefaultDeviceChanged(object sender, DefaultDeviceChangedEventArgs args)
+        private void AudioEventHelperOnDefaultDeviceChanged(object sender, DefaultDeviceChangedEventArgs args)
         {
             var device = sender as MMDevice;
             if (device == null) Debug.WriteLine("DefaultDevice changed: BAD PARAMETERS");
             else
-            Debug.WriteLine("DefaultDevice changed: " + device.FriendlyName + " (" + args.Flow + ": " + args.Role + ")");
+            {
+                Debug.WriteLine("DefaultDevice changed: " + device.FriendlyName + " (" + args.Flow + ": " + args.Role + ")");
+
+                DefaultMultimediaRenderDevice = ActiveOutputDeviceList.FirstOrDefault(od => od.ActualDevice.FriendlyName == device.FriendlyName);
+            }
         }
 
         private void AudioEventHelperOnPropertyValueChanged(object sender, PropertyValueChangedEventArgs args)
@@ -166,7 +159,6 @@ namespace AudioManager10.ViewModel.ViewModel
         
         private void AudioDeviceObjectOnVolumeChanged(object sender, VolumeChangedEventArgs args)
         {
-            DefaultMasterVolume = args.NewVolume;
             _delayMasterVolumeEventTimer.Stop();
             _delayMasterVolumeEventTimer.Tag = new Tuple<object, VolumeChangedEventArgs>(sender, args);
             _delayMasterVolumeEventTimer.Start();

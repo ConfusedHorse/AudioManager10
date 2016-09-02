@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AudioManager10.Properties {
+namespace AudioManager10.View.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,13 +25,25 @@ namespace AudioManager10.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool WarningDialogAccepted {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowAlternativeVolume {
             get {
-                return ((bool)(this["WarningDialogAccepted"]));
+                return ((bool)(this["ShowAlternativeVolume"]));
             }
             set {
-                this["WarningDialogAccepted"] = value;
+                this["ShowAlternativeVolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("33")]
+        public int AlternativeVolumeRectCount {
+            get {
+                return ((int)(this["AlternativeVolumeRectCount"]));
+            }
+            set {
+                this["AlternativeVolumeRectCount"] = value;
             }
         }
     }

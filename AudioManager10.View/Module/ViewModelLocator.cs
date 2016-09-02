@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
-using AudioManager10.DependencyInjector;
-using AudioManager10.Settings;
+using AudioManager10.View.Control.TrayControl;
+using AudioManager10.ViewModel.Module;
 using AudioManager10.ViewModel.ViewModel;
 using Ninject;
 
@@ -23,10 +23,13 @@ namespace AudioManager10.View.Module
 
         #endregion Singleton
 
+        // ViewModel
         public TrayIconViewModel TrayIconViewModel => NinjectKernel.StandardKernel.Get<TrayIconViewModel>();
         public AudioDevicesViewModel AudioDevicesViewModel => NinjectKernel.StandardKernel.Get<AudioDevicesViewModel>();
-        public AudioSettings AudioSettings => NinjectKernel.StandardKernel.Get<AudioSettings>();
         public OptionsViewModel OptionsViewModel => NinjectKernel.StandardKernel.Get<OptionsViewModel>();
+
+        // View
+        public TrayManager TrayManager => NinjectKernel.StandardKernel.Get<TrayManager>();
 
         public static void Cleanup()
         {

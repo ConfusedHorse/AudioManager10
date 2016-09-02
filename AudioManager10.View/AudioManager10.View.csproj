@@ -67,6 +67,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -77,10 +78,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control\VolumeOSD.xaml.cs">
+    <Compile Include="Control\OptionsControl\OptionsControls\AlternativeOsdOption.xaml.cs">
+      <DependentUpon>AlternativeOsdOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\VolumeControl\VolumeOSD.xaml.cs">
       <DependentUpon>VolumeOSD.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Control\OptionsControl.xaml.cs">
+    <Compile Include="Control\OptionsControl\OptionsControl.xaml.cs">
       <DependentUpon>OptionsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Control\AudioDevicesControl.xaml.cs">
@@ -90,7 +94,11 @@
     <Compile Include="Control\TrayControl\TrayWindow.xaml.cs">
       <DependentUpon>TrayWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\VolumeControl\VolumeRectangle.xaml.cs">
+      <DependentUpon>VolumeRectangle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Module\ViewModelLocator.cs" />
+    <Compile Include="Module\ViewModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.de.Designer.cs">
       <DependentUpon>Resources.de.resx</DependentUpon>
@@ -104,9 +112,11 @@
     </Compile>
     <Compile Include="Resource\Converter\Converters\CaptureImageConverter.cs" />
     <Compile Include="Resource\Converter\Converters\DoublePercentageConverter.cs" />
+    <Compile Include="Resource\Converter\Converters\QuantityEnumConverter.cs" />
     <Compile Include="Resource\Converter\Converters\VolumeImageConverter.cs" />
     <Compile Include="Resource\Converter\Converters\PercentualValueConverter.cs" />
     <Compile Include="Resource\Enum\IconIco.cs" />
+    <Compile Include="Resource\Enum\Quantity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -117,11 +127,15 @@
     <Folder Include="Resource\Icons\256\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Control\VolumeOSD.xaml">
+    <Page Include="Control\OptionsControl\OptionsControls\AlternativeOsdOption.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\VolumeControl\VolumeOSD.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Control\OptionsControl.xaml">
+    <Page Include="Control\OptionsControl\OptionsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -134,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\TrayControl\TrayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\VolumeControl\VolumeRectangle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,14 +169,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AudioManager10.DependencyInjector\AudioManager10.DependencyInjector.csproj">
-      <Project>{9B09D280-A8ED-4AE6-A01F-F6AD649D32C9}</Project>
-      <Name>AudioManager10.DependencyInjector</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AudioManager10.Settings\AudioManager10.Settings.csproj">
-      <Project>{AC24EA76-8B99-480F-812B-9EFC60B7A398}</Project>
-      <Name>AudioManager10.Settings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AudioManager10.ViewModel\AudioManager10.ViewModel.csproj">
       <Project>{4d04f487-4b09-49a9-bc3e-041a9dda9009}</Project>
       <Name>AudioManager10.ViewModel</Name>
@@ -176,6 +186,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
