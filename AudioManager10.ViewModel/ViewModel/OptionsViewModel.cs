@@ -45,6 +45,7 @@ namespace AudioManager10.ViewModel.ViewModel
             {
                 _showAlternativeOsd = value;
                 Settings.Default.ShowAlternativeVolume = value;
+                Settings.Default.Save();
 
                 if (value) ShowAlternativeOsdDemanded?.Invoke(this, null); 
                 else CloseAlternativeOsdDemanded?.Invoke(this, null);
@@ -60,6 +61,7 @@ namespace AudioManager10.ViewModel.ViewModel
             {
                 _alternativeOsdRectCount = value;
                 Settings.Default.AlternativeVolumeRectCount = value;
+                Settings.Default.Save();
                 RaisePropertyChanged(() => AlternativeOsdRectCount);
             }
         }
@@ -77,8 +79,8 @@ namespace AudioManager10.ViewModel.ViewModel
 
         private void InitializeSettings()
         {
-            ShowAlternativeOsd = Settings.Default.ShowAlternativeVolume;
             AlternativeOsdRectCount = Settings.Default.AlternativeVolumeRectCount;
+            ShowAlternativeOsd = Settings.Default.ShowAlternativeVolume;
         }
 
         #endregion

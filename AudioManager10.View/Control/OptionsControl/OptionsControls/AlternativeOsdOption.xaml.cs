@@ -19,19 +19,7 @@ namespace AudioManager10.View.Control.OptionsControl.OptionsControls
             var slider = (Slider) sender;
             var volumeOsd = ViewModelLocator.Instance.TrayManager.GetVolumeOsd;
             if (sender == null || volumeOsd == null) return;
-            var value = (int)slider.Value;
-            switch (value)
-            {
-                case 0:
-                    volumeOsd.VolumeRectCount = 20;
-                    break;
-                case 1:
-                    volumeOsd.VolumeRectCount = 33;
-                    break;
-                case 2:
-                    volumeOsd.VolumeRectCount = 50;
-                    break;
-            }
+            volumeOsd.VolumeRectCount = (int)slider.Value;
         }
     }
 }

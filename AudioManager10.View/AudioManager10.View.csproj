@@ -116,6 +116,7 @@
     <Compile Include="Resource\Converter\Converters\VolumeImageConverter.cs" />
     <Compile Include="Resource\Converter\Converters\PercentualValueConverter.cs" />
     <Compile Include="Resource\Enum\IconIco.cs" />
+    <Compile Include="Resource\Enum\RectCount.cs" />
     <Compile Include="Resource\Enum\Quantity.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,8 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using AudioManager10.View.Module;
+using AudioManager10.View.Resource.Enum;
 using NAudioWrapper.Interface;
 
 namespace AudioManager10.View.Control.VolumeControl
@@ -24,14 +26,15 @@ namespace AudioManager10.View.Control.VolumeControl
         #region Dependency Properties
 
         public static readonly DependencyProperty VolumeRectCountProperty = DependencyProperty.Register(
-            "VolumeRectCount", typeof(int), typeof(VolumeOsd), new PropertyMetadata(33));
+            "VolumeRectCount", typeof(int), typeof(VolumeOsd),
+            new PropertyMetadata(ViewModelLocator.Instance.OptionsViewModel.AlternativeOsdRectCount.GetRectCount()));
         
         public int VolumeRectCount
         {
             get { return (int) GetValue(VolumeRectCountProperty); }
             set
             {
-                SetValue(VolumeRectCountProperty, value);
+                SetValue(VolumeRectCountProperty, value.GetRectCount());
                 InitializeRectangles();
                 ActivateWindow();
             }
