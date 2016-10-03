@@ -21,7 +21,7 @@
             <!-- Options -->
             <StackPanel x:Name="OptionsPanel" 
                         Orientation="Vertical">
-                <optionsControls:AlternativeOsdOption/>
+                <!--<optionsControls:AlternativeOsdOption/>-->
             </StackPanel>
 
             <Rectangle Style="{StaticResource SeparatorRectangleStyle}"/>

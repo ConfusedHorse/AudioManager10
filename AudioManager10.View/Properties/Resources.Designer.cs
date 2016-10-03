@@ -106,6 +106,24 @@ namespace AudioManager10.View.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured. The application must be closed..
+        /// </summary>
+        public static string ErrorDescription {
+            get {
+                return ResourceManager.GetString("ErrorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fewer.
         /// </summary>
         public static string Fewer {

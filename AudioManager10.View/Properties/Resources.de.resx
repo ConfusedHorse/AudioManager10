@@ -132,6 +132,12 @@
   <data name="ChooseAsDefaultDevice" xml:space="preserve">
     <value>Als Standardgerät auswählen</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="ErrorDesctiption" xml:space="preserve">
+    <value>Es ist ein Fehler aufgetreten. Die Anwendung muss beendet werden.</value>
+  </data>
   <data name="Fewer" xml:space="preserve">
     <value>Weniger</value>
   </data>

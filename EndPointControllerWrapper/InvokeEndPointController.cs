@@ -17,8 +17,7 @@ namespace EndPointControllerWrapper
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = true,
-                    FileName = "EndPointController.exe",
-                    WorkingDirectory = @"Resources\",
+                    FileName = @"C:\temp\EndPointController.exe",
                     StandardOutputEncoding = Encoding.UTF8,
                     Arguments = id
                 }
@@ -36,8 +35,7 @@ namespace EndPointControllerWrapper
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = true,
-                    FileName = "EndPointController.exe",
-                    WorkingDirectory = @"Resources\",
+                    FileName = @"C:\temp\EndPointController.exe",
                     Arguments = "-f \"%d|%ws|%d|%d\""
                 }
             };

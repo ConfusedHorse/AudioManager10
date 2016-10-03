@@ -1,13 +1,14 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Management;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
+using System.Windows.Threading;
 using AudioManager10.Properties;
 using AudioManager10.View.Control.TrayControl;
 using AudioManager10.View.Module;
-using AudioManager10.ViewModel.Module;
 using BlurryControls.DialogFactory;
 using BlurryControls.Internals;
 
@@ -19,7 +20,6 @@ namespace AudioManager10
     public partial class App : Application
     {
         private static readonly Mutex Mutex = new Mutex(true, "{8F6F0AC4-B9A1-45fd-A8CF-72F04E6BDE8F}");
-        private TrayManager _trayManager;
 
         [STAThread]
         protected override void OnStartup(StartupEventArgs e)
@@ -36,10 +36,7 @@ namespace AudioManager10
                 );
                 if (alreadyRunningMessageBoxResult == BlurryDialogResult.Cancel ||
                     alreadyRunningMessageBoxResult == BlurryDialogResult.None) Current.Shutdown();
-                else
-                {
-                    Settings.Default.WarningDialogAccepted = true;
-                }
+                else Settings.Default.WarningDialogAccepted = true;
             }
 
             // Single instance magic
@@ -63,11 +60,20 @@ namespace AudioManager10
                 );
                 Current.Shutdown();
             }
+
+            //copy EndPointController to C:\temp\EndPointController
+            var exeBytes = AudioManager10.Properties.Resources.EndPointController;
+            const string exeToRun = @"C:\temp\EndPointController.exe";
+            if (!File.Exists(exeToRun))
+            using (var exeFile = new FileStream(exeToRun, FileMode.CreateNew))
+            {
+                exeFile.Write(exeBytes, 0, exeBytes.Length);
+            }
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
-            _trayManager?.Terminate();
+            ViewModelLocator.Instance.TrayManager?.Terminate();
             try { Mutex.ReleaseMutex(); } catch (Exception) { /* bla */ }
 
             Settings.Default.Save();
@@ -95,6 +101,18 @@ namespace AudioManager10
                         .Cast<ManagementObject>()
                     select x.GetPropertyValue("Caption")).FirstOrDefault();
             return name != null && name.ToString().Contains("Microsoft Windows 10");
+        }
+
+        private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            var exceptionManagementMessageBoxResult =
+            BlurryMessageBox.Show(
+                View.Properties.Resources.ErrorDescription + "\r\n" + e.Exception,
+                View.Properties.Resources.Error,
+                BlurryDialogButton.Ok,
+                BlurryDialogIcon.Error, 0.5
+            );
+            Current.Shutdown();
         }
     }
 }
