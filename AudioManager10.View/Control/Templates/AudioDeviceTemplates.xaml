@@ -111,10 +111,22 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Command="{Binding .SetAsDefaultOutputDeviceCommand}"
+                <Button x:Name="DefaultButton" 
+                        Command="{Binding .SetAsDefaultOutputDeviceCommand}"
                         Style="{StaticResource SmallInvisibleButtonStyle}"
                         ToolTip="{x:Static p:Resources.ChooseAsDefaultDevice}">
-                    <Image Source="../../Resource/Icons/032/speaker_white.png"/>
+                    <Image Source="../../Resource/Icons/032/speaker_white.png">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Opacity" Value="1.0"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsEnabled, ElementName=DefaultButton}" Value="False">
+                                        <Setter Property="Opacity" Value="0.3"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
                 </Button>
 
                 <TextBlock Grid.Column="1" 

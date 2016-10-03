@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using EndPointControllerWrapper;
 using NAudio.CoreAudioApi;
-using NAudioWrapper.Interface;
 using MMDeviceEnumerator = NAudio.CoreAudioApi.MMDeviceEnumerator;
 
 namespace NAudioWrapper.Helper
