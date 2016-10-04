@@ -34,6 +34,7 @@ namespace AudioManager10.View.Control.TrayControl
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             _instance.TrayWindowIsOpened = true;
+            Activate();
         }
 
         private void OnClosed(object sender, EventArgs eventArgs)

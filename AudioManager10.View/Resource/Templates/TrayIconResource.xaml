@@ -16,7 +16,7 @@
                   Command="{Binding ShowWindowCommand}" />
         <!--<MenuItem Header="Hide Window" Command="{Binding HideWindowCommand}" />-->
         <Separator />
-        <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}" />
+        <MenuItem Header="{x:Static p:Resources.Exit}" Command="{Binding ExitApplicationCommand}" />
     </ContextMenu>
 
     <!-- the application's NotifyIcon - started from TrayInvorker.cs. Declares its own view model. -->

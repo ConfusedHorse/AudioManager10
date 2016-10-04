@@ -135,17 +135,11 @@
   <data name="ErrorDesctiption" xml:space="preserve">
     <value>Es ist ein Fehler aufgetreten. Die Anwendung muss beendet werden.</value>
   </data>
-  <data name="Fewer" xml:space="preserve">
-    <value>Weniger</value>
+  <data name="Exit" xml:space="preserve">
+    <value>AudioManager10 beenden</value>
   </data>
   <data name="InputDevices" xml:space="preserve">
     <value>Aufnahmegeräte</value>
-  </data>
-  <data name="More" xml:space="preserve">
-    <value>Mehr</value>
-  </data>
-  <data name="Normal" xml:space="preserve">
-    <value>Normal</value>
   </data>
   <data name="NotImplemented" xml:space="preserve">
     <value>Nicht implementiert</value>

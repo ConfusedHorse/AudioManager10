@@ -115,11 +115,11 @@ namespace AudioManager10.View.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fewer.
+        ///   Looks up a localized string similar to Terminate AudioManager10.
         /// </summary>
-        public static string Fewer {
+        public static string Exit {
             get {
-                return ResourceManager.GetString("Fewer", resourceCulture);
+                return ResourceManager.GetString("Exit", resourceCulture);
             }
         }
         
@@ -129,24 +129,6 @@ namespace AudioManager10.View.Properties {
         public static string InputDevices {
             get {
                 return ResourceManager.GetString("InputDevices", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to More.
-        /// </summary>
-        public static string More {
-            get {
-                return ResourceManager.GetString("More", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Normal.
-        /// </summary>
-        public static string Normal {
-            get {
-                return ResourceManager.GetString("Normal", resourceCulture);
             }
         }
         

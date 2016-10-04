@@ -135,17 +135,11 @@
   <data name="ErrorDescription" xml:space="preserve">
     <value>An error occured. The application must be closed.</value>
   </data>
-  <data name="Fewer" xml:space="preserve">
-    <value>Fewer</value>
+  <data name="Exit" xml:space="preserve">
+    <value>Terminate AudioManager10</value>
   </data>
   <data name="InputDevices" xml:space="preserve">
     <value>Input Devices</value>
-  </data>
-  <data name="More" xml:space="preserve">
-    <value>More</value>
-  </data>
-  <data name="Normal" xml:space="preserve">
-    <value>Normal</value>
   </data>
   <data name="NotImplemented" xml:space="preserve">
     <value>Not implemented</value>
