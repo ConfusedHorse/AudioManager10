@@ -133,6 +133,24 @@ namespace AudioManager10.View.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Input Devices found.
+        /// </summary>
+        public static string NoInputDevices {
+            get {
+                return ResourceManager.GetString("NoInputDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Output Devices found.
+        /// </summary>
+        public static string NoOutputDevices {
+            get {
+                return ResourceManager.GetString("NoOutputDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not implemented.
         /// </summary>
         public static string NotImplemented {
