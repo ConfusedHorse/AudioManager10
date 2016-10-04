@@ -22,7 +22,7 @@ namespace AudioManager10.View.Control.OptionsControl
 
         private void InitializeOptionsHeight()
         {
-            _optionsHeight = OptionsPanel.Children.Cast<UserControl>().Sum(userControl => userControl.ActualHeight);
+            _optionsHeight = OptionsPanel.Children.Cast<FrameworkElement>().Sum(userControl => userControl.ActualHeight);
             _isExpanded = false;
 
             OptionsPanel.Visibility = Visibility.Collapsed;

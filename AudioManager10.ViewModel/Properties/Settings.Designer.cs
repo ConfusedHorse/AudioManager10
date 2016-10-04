@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AudioManager10.View.Properties {
+namespace AudioManager10.ViewModel.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -26,24 +26,12 @@ namespace AudioManager10.View.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ShowAlternativeVolume {
+        public bool StartOnWindowsStartup {
             get {
-                return ((bool)(this["ShowAlternativeVolume"]));
+                return ((bool)(this["StartOnWindowsStartup"]));
             }
             set {
-                this["ShowAlternativeVolume"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("33")]
-        public int AlternativeVolumeRectCount {
-            get {
-                return ((int)(this["AlternativeVolumeRectCount"]));
-            }
-            set {
-                this["AlternativeVolumeRectCount"] = value;
+                this["StartOnWindowsStartup"] = value;
             }
         }
     }

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Windows.Input;
-using AudioManager10.View.Properties;
+﻿using System.Windows.Input;
+using AudioManager10.ViewModel.Properties;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -11,8 +10,7 @@ namespace AudioManager10.ViewModel.ViewModel
         #region Fields
 
         private bool _isBusy;
-        private bool _showAlternativeOsd;
-        private int _alternativeOsdRectCount;
+        private bool _startOnWindowsStartup;
 
         #endregion
 
@@ -38,31 +36,16 @@ namespace AudioManager10.ViewModel.ViewModel
             }
         }
 
-        public bool ShowAlternativeOsd
+        public bool StartOnWindowsStartup
         {
-            get { return _showAlternativeOsd; }
+            get { return _startOnWindowsStartup; }
             set
             {
-                _showAlternativeOsd = value;
-                Settings.Default.ShowAlternativeVolume = value;
+                _startOnWindowsStartup = value;
+                Settings.Default.StartOnWindowsStartup = value;
                 Settings.Default.Save();
 
-                if (value) ShowAlternativeOsdDemanded?.Invoke(this, null); 
-                else CloseAlternativeOsdDemanded?.Invoke(this, null);
-
-                RaisePropertyChanged(() => ShowAlternativeOsd);
-            }
-        }
-
-        public int AlternativeOsdRectCount
-        {
-            get { return _alternativeOsdRectCount; }
-            set
-            {
-                _alternativeOsdRectCount = value;
-                Settings.Default.AlternativeVolumeRectCount = value;
-                Settings.Default.Save();
-                RaisePropertyChanged(() => AlternativeOsdRectCount);
+                RaisePropertyChanged(() => StartOnWindowsStartup);
             }
         }
 
@@ -79,16 +62,12 @@ namespace AudioManager10.ViewModel.ViewModel
 
         private void InitializeSettings()
         {
-            AlternativeOsdRectCount = Settings.Default.AlternativeVolumeRectCount;
-            ShowAlternativeOsd = Settings.Default.ShowAlternativeVolume;
+            StartOnWindowsStartup = Settings.Default.StartOnWindowsStartup;
         }
 
         #endregion
 
         #region Events
-
-        public event EventHandler ShowAlternativeOsdDemanded;
-        public event EventHandler CloseAlternativeOsdDemanded;
 
         #endregion
 

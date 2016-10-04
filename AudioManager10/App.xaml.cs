@@ -7,7 +7,6 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 using AudioManager10.Properties;
-using AudioManager10.View.Control.TrayControl;
 using AudioManager10.View.Module;
 using BlurryControls.DialogFactory;
 using BlurryControls.Internals;
@@ -42,8 +41,6 @@ namespace AudioManager10
             // Single instance magic
             if (Mutex.WaitOne(TimeSpan.Zero, true))
             {
-                // Start application on Windows startup
-                InstallMeOnStartUp();
                 base.OnStartup(e);
 
                 // Start application in system tray
@@ -77,20 +74,30 @@ namespace AudioManager10
             try { Mutex.ReleaseMutex(); } catch (Exception) { /* bla */ }
 
             Settings.Default.Save();
+            // Start application on Windows startup
+            StartOnWindowsStartUp();
+
             base.OnExit(e);
         }
 
-        private static void InstallMeOnStartUp()
+        private static void StartOnWindowsStartUp()
         {
             try
             {
                 var key =
-                    Microsoft.Win32.Registry.CurrentUser.OpenSubKey(
-                        "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+                Microsoft.Win32.Registry.CurrentUser.OpenSubKey(
+                    "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
                 var curAssembly = Assembly.GetExecutingAssembly();
-                key.SetValue(curAssembly.GetName().Name, curAssembly.Location);
-            }
-            catch { }
+
+                if (ViewModel.Properties.Settings.Default.StartOnWindowsStartup)
+                {
+                    key?.SetValue(curAssembly.GetName().Name, curAssembly.Location);
+                }
+                else
+                {
+                    key?.DeleteValue(curAssembly.GetName().Name, false);
+                }
+            } catch (Exception) { /* bla */ }
         }
 
         private static bool IsWindows10()

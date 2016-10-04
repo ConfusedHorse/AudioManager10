@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:p="clr-namespace:AudioManager10.View.Properties"
+             xmlns:optionsControls="clr-namespace:AudioManager10.View.Control.OptionsControl.OptionsControls"
              mc:Ignorable="d" 
              d:DesignHeight="32" d:DesignWidth="300">
     <UserControl.Resources>
@@ -20,7 +21,7 @@
             <!-- Options -->
             <StackPanel x:Name="OptionsPanel" 
                         Orientation="Vertical">
-                
+                <optionsControls:StartWithWindowsOption/>
             </StackPanel>
 
             <Rectangle Style="{StaticResource SeparatorRectangleStyle}"/>

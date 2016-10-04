@@ -79,15 +79,6 @@ namespace AudioManager10.View.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Split count.
-        /// </summary>
-        public static string AlternativeOsdRectCount {
-            get {
-                return ResourceManager.GetString("AlternativeOsdRectCount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to AudioDevices.
         /// </summary>
         public static string AudioDevices {
@@ -214,11 +205,11 @@ namespace AudioManager10.View.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show alternative OSD.
+        ///   Looks up a localized string similar to Start on Windows startup.
         /// </summary>
-        public static string ShowAlternativeOsd {
+        public static string StartOnWindowsStartup {
             get {
-                return ResourceManager.GetString("ShowAlternativeOsd", resourceCulture);
+                return ResourceManager.GetString("StartOnWindowsStartup", resourceCulture);
             }
         }
     }

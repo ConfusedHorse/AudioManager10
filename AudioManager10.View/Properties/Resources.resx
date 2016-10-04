@@ -123,9 +123,6 @@
   <data name="AlreadyRunningDescription" xml:space="preserve">
     <value>An instance of AudioManager10 is already running, please close this down before starting a new session.</value>
   </data>
-  <data name="AlternativeOsdRectCount" xml:space="preserve">
-    <value>Split count</value>
-  </data>
   <data name="AudioDevices" xml:space="preserve">
     <value>AudioDevices</value>
   </data>
@@ -168,7 +165,7 @@
   <data name="OutputDevices" xml:space="preserve">
     <value>Output Devices</value>
   </data>
-  <data name="ShowAlternativeOsd" xml:space="preserve">
-    <value>Show alternative OSD</value>
+  <data name="StartOnWindowsStartup" xml:space="preserve">
+    <value>Start on Windows startup</value>
   </data>
 </root>

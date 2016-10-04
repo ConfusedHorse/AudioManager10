@@ -13,7 +13,8 @@
     DataContext="{Binding Path=TrayIconViewModel,
                           Source={x:Static module:ViewModelLocator.Instance}}"
     Strength="0.75"
-    DeactivationDuration="300">
+    DeactivationDuration="300"
+    DeactivatesOnLostFocus="True">
     <StackPanel Orientation="Vertical"
                 VerticalAlignment="Bottom">
         <optionsControl:OptionsControl x:Name="OptionsControl"
