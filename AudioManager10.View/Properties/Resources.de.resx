@@ -141,6 +141,12 @@
   <data name="InputDevices" xml:space="preserve">
     <value>Aufnahmegeräte</value>
   </data>
+  <data name="NoInputDevices" xml:space="preserve">
+    <value>Keine Aufnahmegeräte gefunden</value>
+  </data>
+  <data name="NoOutputDevices" xml:space="preserve">
+    <value>Keine Wiedergabegeräte gefunden</value>
+  </data>
   <data name="NotImplemented" xml:space="preserve">
     <value>Nicht implementiert</value>
   </data>
