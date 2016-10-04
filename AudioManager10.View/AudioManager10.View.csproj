@@ -78,12 +78,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control\OptionsControl\OptionsControls\AlternativeOsdOption.xaml.cs">
-      <DependentUpon>AlternativeOsdOption.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\VolumeControl\VolumeOSD.xaml.cs">
-      <DependentUpon>VolumeOSD.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Control\OptionsControl\OptionsControl.xaml.cs">
       <DependentUpon>OptionsControl.xaml</DependentUpon>
     </Compile>
@@ -93,9 +87,6 @@
     <Compile Include="Control\TrayControl\TrayManager.cs" />
     <Compile Include="Control\TrayControl\TrayWindow.xaml.cs">
       <DependentUpon>TrayWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Control\VolumeControl\VolumeRectangle.xaml.cs">
-      <DependentUpon>VolumeRectangle.xaml</DependentUpon>
     </Compile>
     <Compile Include="Module\ViewModelLocator.cs" />
     <Compile Include="Module\ViewModule.cs" />
@@ -133,18 +124,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Control\OptionsControl\OptionsControls\" />
     <Folder Include="Resource\Icons\128\" />
     <Folder Include="Resource\Icons\256\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Control\OptionsControl\OptionsControls\AlternativeOsdOption.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\VolumeControl\VolumeOSD.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Control\OptionsControl\OptionsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -158,10 +142,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\TrayControl\TrayWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Control\VolumeControl\VolumeRectangle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

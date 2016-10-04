@@ -80,7 +80,7 @@ namespace AudioManager10
             base.OnExit(e);
         }
 
-        private void InstallMeOnStartUp()
+        private static void InstallMeOnStartUp()
         {
             try
             {

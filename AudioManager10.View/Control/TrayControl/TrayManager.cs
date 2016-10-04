@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Threading;
 using System.Windows;
-using AudioManager10.View.Control.VolumeControl;
 using AudioManager10.View.Module;
 using AudioManager10.View.Resource.Enum;
 using AudioManager10.ViewModel.ViewModel;
@@ -18,12 +17,9 @@ namespace AudioManager10.View.Control.TrayControl
         private TrayIconViewModel _instance;
         private OptionsViewModel _options;
         private TrayWindow _trayWindow;
-        private VolumeOsd _volumeOsd;
         private readonly Icon[] _icos = new Icon[5];
 
         private TrayWindow TrayWindow => _trayWindow ?? (_trayWindow = new TrayWindow(){ });
-        private VolumeOsd VolumeOsd => _volumeOsd ?? (_volumeOsd = new VolumeOsd(){ });
-        public VolumeOsd GetVolumeOsd => _volumeOsd;
 
 
         public void Initialize()
@@ -62,8 +58,6 @@ namespace AudioManager10.View.Control.TrayControl
         {
             _instance.ShowTrayWindowDemanded += InstanceOnShowTrayWindowDemanded;
             _instance.CloseTrayWindowDemanded += InstanceOnCloseTrayWindowDemanded;
-            _options.ShowAlternativeOsdDemanded += OptionsOnShowAlternativeOsdDemanded;
-            _options.CloseAlternativeOsdDemanded += OptionsOnCloseAlternativeOsdDemanded;
             ViewModelLocator.Instance.AudioDevicesViewModel.DefaultMasterVolumeChanged += SelectIconFromMasterVolume;
         }
 
@@ -125,17 +119,6 @@ namespace AudioManager10.View.Control.TrayControl
         private void InstanceOnCloseTrayWindowDemanded(object sender, EventArgs eventArgs)
         {
             _trayWindow?.Close();
-        }
-
-        private void OptionsOnShowAlternativeOsdDemanded(object sender, EventArgs eventArgs)
-        {
-            VolumeOsd.Show();
-            _volumeOsd.Closed += delegate { _volumeOsd = null; };
-        }
-
-        private void OptionsOnCloseAlternativeOsdDemanded(object sender, EventArgs eventArgs)
-        {
-            _volumeOsd?.Close();
         }
 
         #endregion Handles
