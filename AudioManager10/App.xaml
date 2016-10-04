@@ -7,6 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/AudioManager10.View;component/Resource/Resources.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/BlurryControls;component/Resources/Themes/Themes.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
