@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationRevision>23</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -63,8 +63,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>speaker.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BlurryControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -190,6 +189,7 @@
     <Content Include="Resources\EndPointController.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="speaker.ico" />
     <Resource Include="Resources\speaker.ico" />
   </ItemGroup>
   <ItemGroup>

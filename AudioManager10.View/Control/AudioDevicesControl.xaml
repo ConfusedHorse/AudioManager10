@@ -19,41 +19,19 @@
 
     <StackPanel VerticalAlignment="Bottom">
         <Rectangle Style="{StaticResource StrongSeparatorRectangleStyle}"/>
-        <TextBlock HorizontalAlignment="Right"
-                   Text="{x:Static p:Resources.InputDevices}">
-            <TextBlock.Style>
-                <Style TargetType="TextBlock" BasedOn="{StaticResource Header2}">
-                    <Setter Property="Opacity" Value="1.0"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ActiveInputDeviceList.Count}" Value="0">
-                            <Setter Property="Opacity" Value="0.3"/>
-                            <Setter Property="ToolTip" Value="{x:Static p:Resources.NoInputDevices}"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
+        <TextBlock Style="{StaticResource Header2}"
+                   HorizontalAlignment="Right"
+                   Text="{x:Static p:Resources.InputDevices}"/>
 
         <ItemsControl x:Name="InputDevices"
                       ItemsSource="{Binding ActiveInputDeviceList}"
                       ItemTemplate="{StaticResource ActiveInputDeviceTemplate}"/>
 
         <Rectangle Style="{StaticResource StrongSeparatorRectangleStyle}"/>
-        <TextBlock HorizontalAlignment="Right"
-                   Text="{x:Static p:Resources.OutputDevices}">
-            <TextBlock.Style>
-                <Style TargetType="TextBlock" BasedOn="{StaticResource Header2}">
-                    <Setter Property="Opacity" Value="1.0"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding ActiveOutputDeviceList.Count}" Value="0">
-                            <Setter Property="Opacity" Value="0.3"/>
-                            <Setter Property="ToolTip" Value="{x:Static p:Resources.NoOutputDevices}"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
-
+        <TextBlock Style="{StaticResource Header2}"
+                   HorizontalAlignment="Right"
+                   Text="{x:Static p:Resources.OutputDevices}"/>
+        
         <ItemsControl x:Name="OutputDevices"
                       ItemsSource="{Binding ActiveOutputDeviceList}"
                       ItemTemplate="{StaticResource ActiveOutputDeviceTemplate}"/>
