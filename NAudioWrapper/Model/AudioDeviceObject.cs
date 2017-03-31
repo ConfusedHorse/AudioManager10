@@ -64,7 +64,9 @@ namespace NAudioWrapper.Model
             _peakTimer.Start();
 
             var leftPeak = _actualDevice.AudioMeterInformation.PeakValues[0] * 100;
-            var rightPeak = _actualDevice.AudioMeterInformation.PeakValues[1] * 100;
+            var rightPeak = 0d;
+            if (_actualDevice.AudioMeterInformation.PeakValues.Count > 1)
+                rightPeak = _actualDevice.AudioMeterInformation.PeakValues[1] * 100;
 
             if (leftPeak < _percentualLeftPeakDelay) PercentualLeftPeakDelay -= 1;
             else PercentualLeftPeakDelay = (int)leftPeak;
